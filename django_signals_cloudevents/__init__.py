@@ -44,7 +44,7 @@ def _get_instance_dict(instance):
             for rel in getattr(instance, field_name).all():
                 instance_dict[field_name].append(_get_instance_dict(rel))
         else:
-            instance_dict[field_name] = str(getattr(instance, field_name))
+            instance_dict[field_name] = getattr(instance, field_name)
     return instance_dict
 
 
@@ -109,7 +109,7 @@ def get_cloudevent_from_signal(sender, **kwargs):
             payload["data"][field_name] = m2m_data
         # TODO parse related_fields
         # for r_field in obj_meta.related_objects:
-        subject = "DCE:%s.%s/%s" % (app, model, instance.id)
+        subject = "DCE:%s.%s/%s" % (app, model, instance.pk)
     else:
         subject = "DCE:%s.%s" % (app, model)
     payload["signal_kwargs"] = {
