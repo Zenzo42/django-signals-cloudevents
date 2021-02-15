@@ -1,6 +1,5 @@
-=====
 Django signals cloudevents
-=====
+==========================
 
 This apps allow you to produce `Clouevents <https://cloudevents.io/>`_ starting from your models signals sending them to a configurable url (sink).
 
